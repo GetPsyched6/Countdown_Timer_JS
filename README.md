@@ -1,2 +1,3 @@
-# Countdown_Aurora_Sparkles
- Countdown to the Lenovo Arrival Date
+# Countdown Aurora Sparkles
+
+### Countdown to the Lenovo Arrival Date

@@ -1,0 +1,37 @@
+<!--! Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="images/favicons/fm.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="scripts/HackTimer.js"></script>
+    <script src="scripts/script.js"></script>
+    <title>Aurora Sparkles</title>
+  </head>
+  <body onload="minutes_to_midnight()">
+    <div class="wrapper flex">
+      <div class="title">
+        <h1>
+          COUNTDOWN <span class="mini">TO</span>
+          <span class="name" ondblclick="change()">ARRIVAL</span>
+        </h1>
+      </div>
+      <div class="countdown_container flex">
+        <div class="countdown days">00</div>
+        <div class="countdown hours">00</div>
+        <div class="countdown minutes">00</div>
+        <div class="countdown seconds">00</div>
+      </div>
+    </div>
+    <div class="add info">i</div>
+    <div class="add" onclick="newtimer()">+</div>
+  </body>
+</html>

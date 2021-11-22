@@ -1,0 +1,233 @@
+/*! Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License */
+
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+
+@font-face {
+  font-family: "binder";
+  src: url(../fonts/bstyle_b.woff2);
+}
+
+:root {
+  --dd-text: "DAYS";
+  --hh-text: "HOURS";
+  --mm-text: "MINUTES";
+  --ss-text: "SECONDS";
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+*::selection {
+  background: #d6144eda; /* Disable this to switch selection color to blue */
+}
+
+body {
+  background-color: #68225e;
+  background-image: url("../images/Artiom-Vallat-16_9.webp");
+  background-repeat: repeat;
+  background-size: cover;
+  font-family: "binder", "calibri";
+  font-style: oblique;
+  text-transform: uppercase;
+  position: relative;
+  color: white;
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flow-root;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title h1 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5.5rem;
+}
+
+.mini {
+  font-size: 4.25rem;
+  color: #f11a45;
+}
+
+.name {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+.countdown {
+  font-size: 10rem;
+  margin-inline: 8rem;
+  position: relative;
+  width: 100px;
+  text-align: center;
+}
+
+.seconds {
+  color: #f11a45;
+}
+
+.countdown::after {
+  content: var(--dd-text);
+  position: absolute;
+  font-size: 3rem;
+  bottom: 0;
+  left: 35%;
+  transform: translate(-50%, 100%);
+}
+
+.hours::after {
+  content: var(--hh-text);
+}
+
+.minutes::after {
+  content: var(--mm-text);
+}
+
+.seconds::after {
+  content: var(--ss-text);
+}
+
+.add {
+  position: absolute;
+  border: 2px solid;
+  border-color: #ffffffcb;
+  background-color: #ffffff88;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5;
+  font-size: 2.5rem;
+  color: inherit;
+  font-family: "Nunito", "calibri";
+  font-weight: 800;
+  font-style: normal;
+  text-align: center;
+  line-height: 39px;
+  user-select: none;
+  cursor: pointer;
+  transition: border-color, background-color, color 150ms ease;
+}
+
+.info {
+  right: revert;
+  left: 20px;
+  font-family: "consolas", "calibri";
+  text-transform: lowercase;
+  font-size: 2rem;
+  line-height: 42px;
+}
+
+.add:hover,
+.add:focus-visible {
+  border: 2px solid;
+  border-color: #ffffffef;
+  background-color: #ffffffa6;
+  color: #c70a30f1;
+}
+
+@media screen and (max-width: 94em) {
+  .title h1 {
+    font-size: 5rem;
+    white-space: nowrap;
+  }
+  .mini {
+    font-size: 3.75rem;
+  }
+  .countdown {
+    font-size: 9.5rem;
+    margin-inline: 4rem;
+    width: 98px;
+  }
+  .countdown::after {
+    font-size: 2.25rem;
+  }
+}
+
+@media screen and (max-width: 78em) {
+  .title h1 {
+    font-size: 4.5rem;
+    white-space: nowrap;
+  }
+  .mini {
+    font-size: 3.75rem;
+  }
+  .countdown {
+    font-size: 8.5rem;
+    margin-inline: 3.25rem;
+    width: 90px;
+  }
+  .countdown::after {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 45.5em) {
+  .title h1 {
+    font-size: 4rem;
+    white-space: normal;
+  }
+  .mini {
+    font-size: 3.5rem;
+  }
+  .countdown {
+    font-size: 7.5rem;
+    margin-inline: 1.75rem;
+    width: 80px;
+  }
+  .countdown::after {
+    font-size: 1.75rem;
+  }
+  .add {
+    width: 32px;
+    height: 32px;
+    font-size: 1.75rem;
+    line-height: 26px;
+  }
+  .info {
+    font-size: 1.5rem;
+    line-height: 28px;
+  }
+}
+
+@media screen and (max-width: 33.2em) {
+  .title h1 {
+    font-size: 4rem;
+    white-space: normal;
+  }
+  .mini {
+    font-size: 3rem;
+  }
+  .countdown {
+    font-size: 4rem;
+    margin-inline: 1.25rem;
+    width: 45px;
+  }
+  .countdown::after {
+    font-size: 1.5rem;
+  }
+}
