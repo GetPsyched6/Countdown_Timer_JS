@@ -1,3 +1,3 @@
-# Countdown Aurora Sparkles
+# Countdown Timer JS
 
-### Countdown to the Lenovo Arrival Date
+### Custom Beautiful Countdowns
