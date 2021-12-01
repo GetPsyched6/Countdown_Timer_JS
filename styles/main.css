@@ -45,7 +45,7 @@ body {
 	font-family: "binder", "calibri";
 	font-style: oblique;
 	position: relative;
-	color: white;
+	color: #fffffff0;
 	overflow: hidden;
 	max-width: 100vw;
 }
@@ -76,7 +76,7 @@ body {
 
 .mini {
 	font-size: 4.25rem;
-	text-shadow: 1px 4px 10px #2c2c2c40;
+	text-shadow: 1px 4px 10px #2c2c2c50;
 	color: var(--accent-clr-main);
 }
 
@@ -148,7 +148,7 @@ body {
 	right: 20px;
 	z-index: 5;
 	font-size: 2.5rem;
-	color: inherit;
+	color: white;
 	font-family: "Nunito", "calibri";
 	font-weight: 800;
 	font-style: normal;
