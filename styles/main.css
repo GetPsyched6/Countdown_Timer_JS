@@ -93,6 +93,7 @@ body {
 }
 
 .name:active {
+	transition-duration: 0ms;
 	color: #00ffbf;
 }
 

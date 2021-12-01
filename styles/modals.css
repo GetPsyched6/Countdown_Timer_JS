@@ -107,12 +107,12 @@
 
 .icon_link:hover,
 .icon_link:focus-visible {
-	color: #ffbbdbe5;
+	color: #adffffe5;
 }
 
 .icon_link:active {
 	transition-duration: 0ms;
-	color: #d4f5fff1;
+	color: #d4ffd4f1;
 }
 
 kbd {
