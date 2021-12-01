@@ -305,7 +305,9 @@
 				<div class="countdown seconds">00</div>
 			</div>
 		</div>
-		<div class="add info" onclick="info_modal(0)">i</div>
+		<div class="add info" title="Information" onclick="info_modal(0)">
+			i
+		</div>
 		<div
 			class="add mute"
 			onclick="mute_icon()"
@@ -313,8 +315,10 @@
 		>
 			<span class="material-icons-round volume">volume_up</span>
 		</div>
-		<div class="add stop" onclick="stop_alarm()">Dismiss</div>
-		<div class="add new_cd" onclick="newtimer(0)">+</div>
+		<div class="add stop" title="Stop Alarm" onclick="stop_alarm()">
+			Dismiss
+		</div>
+		<div class="add new_cd" title="New Timer" onclick="newtimer(0)">+</div>
 		<audio class="alarm" preload="auto" muted="true">
 			<source src="music/33.aac" type="audio/mp4" />
 			Your browser does not support the audio element.
