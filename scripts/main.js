@@ -171,7 +171,7 @@ const newtimer = (flag) => {
 		modal_two.style.transform = "scaleY(1)";
 		setTimeout(function () {
 			document.getElementById("year_input").focus();
-		}, 500);
+		}, 400);
 	} else if (flag == 2) {
 		modal_two.style.transform = "scaleY(0)";
 		document.getElementById("year_input").blur();
@@ -270,7 +270,7 @@ const change_name = (flag) => {
 		document.getElementById("cd_name_input").value = "";
 		setTimeout(function () {
 			document.getElementById("cd_name_input").focus();
-		}, 500);
+		}, 400);
 	} else if (flag == 2) {
 		modal_four.style.transform = "translateY(-275px) scaleY(0)";
 		document.getElementById("cd_name_input").blur();
