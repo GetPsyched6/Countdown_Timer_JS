@@ -1,0 +1,54 @@
+::placeholder {
+	color: #ffffff65;
+}
+
+.inputs {
+	margin-bottom: 25px;
+}
+
+.labels {
+	display: inline-block;
+	text-align: left;
+	text-shadow: 3px 4px 8px #2c2c2cd5;
+	width: 8ch;
+}
+
+.text_box {
+	max-width: 252px;
+	max-height: 30px;
+	color: #ffffffb7;
+	background-color: #ffffff30;
+	border: 2px solid #ffffff60;
+	border-radius: 100vw;
+	padding-inline: 15px; /* text padding left and right */
+	padding-block: 4px 3px; /* text vertical align in box */
+}
+
+.text_box:focus-visible {
+	outline: none;
+	border: 2px solid #ffffffc5;
+}
+
+.text_box:invalid {
+	border-color: #f11a7eda;
+}
+
+@media screen and (max-width: 94em) {
+}
+
+@media screen and (max-width: 78em) {
+}
+
+@media screen and (max-width: 45.5em) {
+	.inputs {
+		margin-bottom: 15px;
+	}
+	.labels {
+		font-size: 1.125rem;
+		text-align: center;
+		margin-bottom: 2.5px;
+	}
+}
+@media screen and (max-width: 33.2em) {
+	/* nothing here yet */
+}

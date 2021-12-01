@@ -1,25 +1,298 @@
-<!-- Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License -->
+<!--! Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Create beautiful custom countdowns!"
+		/>
+		<link
+			rel="preload"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+			as="style"
+			onload="this.onload=null;this.rel='stylesheet'"
+		/>
+		<noscript
+			><link
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+		/></noscript>
 		<link
 			rel="shortcut icon"
-			href="images/favicons/fm.png"
+			href="images/favicons/mt.webp"
 			type="image/x-icon"
 		/>
+		<link rel="stylesheet" href="styles/reset.css" />
 		<link rel="stylesheet" href="styles/main.css" />
-		<script src="scripts/main.js"></script>
+		<script
+			async
+			src="https://kit.fontawesome.com/162f9ea978.js"
+			crossorigin="anonymous"
+		></script>
 		<title>Aurora Sparkles</title>
 	</head>
+
 	<body onload="minutes_to_midnight()">
 		<div class="wrapper flex">
+			<div class="modal_dialog dialog_one">
+				<div class="flex">
+					<span class="modal_text md_1"
+						>Welcome to Aurora Sparkles</span
+					>
+					<span class="modal_text md_2"
+						>Attribution GetPsyched6© 2021</span
+					>
+					<button
+						type="button"
+						class="button"
+						onclick="close_modal(1)"
+					>
+						Allow Alarm Sound
+					</button>
+					<button
+						type="button"
+						class="button btn_cancel"
+						onclick="close_modal(0)"
+					>
+						Deny Alarm Sound
+					</button>
+				</div>
+			</div>
+			<div class="modal_dialog dialog_two">
+				<div class="flex">
+					<span class="modal_text md_1">Add a New Countdown</span>
+					<form
+						action="POST"
+						class="form_newtimer"
+						onsubmit="event.preventDefault();"
+					>
+						<div class="inputs year_input">
+							<div class="labels year_label">
+								<label for="year_input">Year</label>
+							</div>
+							<input
+								type="text"
+								id="year_input"
+								class="text_box"
+								name="year_ip"
+								placeholder="YYYY"
+								maxlength="4"
+								autocomplete="off"
+								title="Integer 4 digits only. 2021 to 2099"
+								pattern="^((?!\.)20([3-9]\d|2[1-9]))$"
+							/>
+						</div>
+						<div class="inputs month_input">
+							<div class="labels month_label">
+								<label for="month_input">Month</label>
+							</div>
+							<input
+								type="text"
+								id="month_input"
+								class="text_box"
+								name="month_ip"
+								placeholder="MM"
+								maxlength="2"
+								autocomplete="off"
+								title="Integer 1 or 2 digits only. 1 to 12"
+								pattern="^((?!\.)[1-9]|1[0-2])$"
+							/>
+						</div>
+						<div class="inputs day_input">
+							<div class="labels day_label">
+								<label for="day_input">Day</label>
+							</div>
+							<input
+								type="text"
+								id="day_input"
+								class="text_box"
+								name="day_ip"
+								placeholder="DD"
+								maxlength="2"
+								autocomplete="off"
+								title="Integer 1 or 2 digits only. 1 to 31"
+								pattern="^((?!\.)0?[1-9]|([1-2]\d)|3[0-1])$"
+							/>
+						</div>
+						<div class="inputs hour_input">
+							<div class="labels hour_label">
+								<label for="hour_input">Hour</label>
+							</div>
+							<input
+								type="text"
+								id="hour_input"
+								class="text_box"
+								name="hour_ip"
+								placeholder="hh"
+								maxlength="2"
+								autocomplete="off"
+								title="Integer 1 or 2 digits only. 0 to 23"
+								pattern="^((?!\.)[0-1]?\d|2[0-3])$"
+							/>
+						</div>
+						<div class="inputs minute_input">
+							<div class="labels minute_label">
+								<label for="minute_input">Minute</label>
+							</div>
+							<input
+								type="text"
+								id="minute_input"
+								class="text_box"
+								name="minute_ip"
+								placeholder="mm"
+								maxlength="2"
+								autocomplete="off"
+								title="Integer 1 or 2 digits only. 0 to 59"
+								pattern="^((?!\.)[0-5]?\d)$"
+							/>
+						</div>
+						<div class="inputs second_input">
+							<div class="labels second_label">
+								<label for="second_input">Second</label>
+							</div>
+							<input
+								type="text"
+								id="second_input"
+								class="text_box"
+								name="second_ip"
+								placeholder="ss"
+								maxlength="2"
+								autocomplete="off"
+								title="Integer 1 or 2 digits only. 0 to 59"
+								pattern="^((?!\.)[0-5]?\d)$"
+							/>
+						</div>
+						<button
+							type="submit"
+							class="button btn_accept"
+							onclick="newtimer(1)"
+						>
+							Submit
+						</button>
+						<button
+							type="button"
+							class="button btn_cancel btn_spacer"
+							onclick="newtimer(2)"
+						>
+							Cancel
+						</button>
+					</form>
+				</div>
+			</div>
+			<div class="modal_dialog dialog_three">
+				<div class="flex">
+					<span class="modal_text md_1"
+						>Welcome to Aurora Sparkles</span
+					>
+					<span class="modal_text md_2"
+						>Roshin Nishad | IIITK Batch 2020</span
+					>
+					<span class="modal_text md_2"
+						>Attribution GetPsyched6© 2021</span
+					>
+					<span class="modal_text social flex">
+						<span class="icon_link anchor_one"
+							><a
+								href="https://github.com/GetPsyched6"
+								class="reset-a"
+								title="GetPsyched6 GitHub"
+								><i class="fa-brands fa-github"></i></a></span
+						><span class="icon_link anchor_two"
+							><a
+								href="mailto:roshin006@gmail.com"
+								class="reset-a"
+								title="Roshin's Mail"
+								><i
+									class="fa-regular fa-envelope"
+								></i></a></span
+						><span class="icon_link anchor_three"
+							><a
+								href="https://www.instagram.com/juve_vittoria/"
+								class="reset-a"
+								title="juve_vittoria's Instagram"
+							>
+								<i class="fa-brands fa-instagram"></i> </a
+						></span>
+					</span>
+					<span class="modal_text md_1">Keyboard Shortcuts</span>
+					<span class="modal_text md_2 kbd_sc"
+						><kbd>m</kbd>&emsp;Mute/Unmute</span
+					>
+					<span class="modal_text md_2 kbd_sc"
+						><kbd>n</kbd>&emsp;Set New Countdown</span
+					>
+					<span class="modal_text md_2 kbd_sc"
+						><kbd>i</kbd>&emsp;Open Info Box</span
+					>
+					<span class="modal_text md_2 kbd_sc"
+						><kbd>Alt</kbd> + <kbd>C</kbd>&emsp;Change Title</span
+					>
+					<button
+						type="button"
+						class="button btn_cancel"
+						onclick="info_modal(1)"
+					>
+						Close
+					</button>
+				</div>
+			</div>
+			<div class="modal_dialog dialog_four">
+				<div class="flex">
+					<span class="modal_text md_1">Change Countdown Name</span>
+					<form
+						action="POST"
+						class="form_nameinput"
+						onsubmit="event.preventDefault();"
+					>
+						<div class="inputs name_input">
+							<div class="labels name_label">
+								<label for="cd_name_input">Name</label>
+							</div>
+							<input
+								type="text"
+								id="cd_name_input"
+								class="text_box"
+								name="name_ip"
+								placeholder="Enter New Name"
+								maxlength="20"
+								autocomplete="new-password"
+								title="Chars, [!_-@#%^&*/|{}~] and 0-9 only"
+								pattern="^((?!['\x22;:<>,`\$\(\)\\]).){1,20}$"
+							/>
+						</div>
+						<button
+							type="submit"
+							class="button btn_accept"
+							onclick="change_name(1)"
+						>
+							Submit
+						</button>
+						<button
+							type="button"
+							class="button btn_cancel btn_spacer"
+							onclick="change_name(2)"
+						>
+							Close
+						</button>
+					</form>
+				</div>
+			</div>
+			<div class="song_name">
+				<span class="material-icons-round audio_icon"> audiotrack </span
+				>&nbsp; Mountains | Artist - LSD
+			</div>
 			<div class="title">
 				<h1>
 					COUNTDOWN <span class="mini">TO</span>
-					<span class="name" ondblclick="change()">ARRIVAL</span>
+					<span
+						class="name"
+						onclick="change_name(0)"
+						title="Click to change name"
+						>ARRIVAL</span
+					>
 				</h1>
 			</div>
 			<div class="countdown_container flex">
@@ -29,7 +302,26 @@
 				<div class="countdown seconds">00</div>
 			</div>
 		</div>
-		<div class="add info">i</div>
-		<div class="add" onclick="newtimer()">+</div>
+		<div class="add info" onclick="info_modal(0)">i</div>
+		<div
+			class="add mute"
+			onclick="mute_icon()"
+			title="Mute or Unmute Alarm"
+		>
+			<span class="material-icons-round volume">volume_up</span>
+		</div>
+		<div class="add stop" onclick="stop_alarm()">Dismiss</div>
+		<div class="add new_cd" onclick="newtimer(0)">+</div>
+		<audio class="alarm" preload="auto" muted="true">
+			<source src="music/33.aac" type="audio/mp4" />
+			Your browser does not support the audio element.
+		</audio>
+		<audio class="beep" preload="auto" muted="true">
+			<source src="music/beep.mp3" type="audio/mp3" />
+			Your browser does not support the audio element.
+		</audio>
+
+		<script src="scripts/mousetrap.min.js"></script>
+		<script src="scripts/main.js"></script>
 	</body>
 </html>

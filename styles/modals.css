@@ -1,0 +1,209 @@
+.modal_dialog {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	background: #0e0e0e62;
+	z-index: 9999;
+	font-weight: 400;
+	font-family: "Arial", sans-serif;
+	font-size: 1.25rem;
+	font-style: normal;
+	transition: opacity 400ms ease;
+}
+
+.modal_dialog > div {
+	flex-direction: column;
+	text-align: center;
+	width: 28.125rem;
+	padding: 45px 40px 45px;
+	border-radius: 20px;
+	border: 5px solid;
+	border-color: #757575ee;
+	background-color: #505050fa;
+	box-shadow: 10px 15px 15px #292929c9;
+}
+
+@supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+	.modal_dialog > div {
+		background-color: #505050c9;
+		-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(12px);
+	}
+}
+
+.dialog_one {
+	opacity: var(--modal_one-opacity);
+}
+
+.dialog_two {
+	transition: transform 400ms ease;
+	transform: scaleY(0);
+}
+
+.dialog_two > div {
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: 90%;
+	width: 32.125rem;
+}
+
+/*! .d_two_main {
+	transition: transform 400ms ease;
+	transform-origin: left;
+	transform: scaleY(1);
+} */
+
+.dialog_three {
+	transition: transform 400ms ease;
+	transform: scaleY(0);
+}
+
+.dialog_four {
+	margin: 0 auto;
+	width: -moz-fit-content;
+	height: fit-content;
+	width: fit-content;
+	background: none;
+	transform: translateY(-275px) scaleY(0);
+	transform-origin: top;
+	transition: transform 400ms ease-in-out;
+}
+
+.dialog_four > div {
+	padding: 45px 5px 30px;
+	
+}
+
+.modal_text {
+	text-shadow: 3px 4px 8px #2c2c2cd5;
+	margin-bottom: 0.75rem;
+	transform: translateY(-20px);
+}
+
+.md_1 {
+	font-size: 1.65rem;
+	font-weight: 700;
+}
+
+.md_2 {
+	font-size: smaller;
+}
+
+.anchor_one {
+	font-size: 1.95rem;
+}
+
+.social {
+	margin-top: 1rem;
+	font-size: 2rem;
+	gap: 2.5rem;
+}
+
+.icon_link {
+	color: inherit;
+	transition: color 150ms ease-in-out;
+}
+
+.icon_link:hover,
+.icon_link:focus-visible {
+	color: #ffbbdbe5;
+}
+
+.icon_link:active {
+	transition-duration: 0ms;
+	color: #d4f5fff1;
+}
+
+kbd {
+	border: 2px solid;
+	border-color: #757575ee;
+	background-color: #505050c9;
+	padding: 0px 6px 1px; 
+	border-radius:6px;
+}
+
+.kbd_sc {
+	margin-bottom: 1rem;
+}
+
+.md_2:nth-of-type(3),
+.md_2:last-of-type {
+	margin-bottom: 0;
+}
+
+.button {
+	cursor: pointer;
+	outline: none;
+	line-height: 22.5px;
+	margin: 15px 0 0px 0;
+	padding: 7.5px 30px;
+	border-radius: 100vw;
+	color: white;
+	border: 2px solid;
+	border-color: #ffffffcb;
+	background-color: #ffffff3b;
+	transition: border-color, background-color 150ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+	border: 2px solid;
+	border-color: #ffffff;
+	background-color: #ffffff73;
+}
+
+.btn_cancel {
+	color: #ffdaeb;
+	border-color: #ffcee5cb;
+}
+
+.btn_cancel:hover,
+.btn_cancel:focus-visible {
+	color: #ffdfee;
+	border-color: #ffbbdbe5;
+}
+
+.button:active {
+	color: #d4f5fff1;
+	background-color: #d3d3d37c;
+}
+
+.btn_spacer {
+	margin-left: 20px;
+}
+
+@media screen and (max-width: 94em) {
+	.dialog_two > div {
+		width: 32.125rem;
+	}
+}
+
+@media screen and (max-width: 78em) {
+	.modal_dialog > div {
+		width: 28.125rem;
+	}
+}
+
+@media screen and (max-width: 45.5em) {
+	.modal_dialog > div {
+		width: clamp(220px, 85vw, 400px);
+	}
+	.btn_spacer {
+		margin-left: 15px;
+	}
+}
+@media screen and (max-width: 33.2em) {
+	.dialog_two > div {
+		padding: 45px 40px 30px;
+	}
+	.md_1 {
+		font-size: 1.195rem;
+	}
+	.md_2 {
+		font-size: 1rem;
+	}
+	.button {
+		padding: 7.5px 20px;
+	}
+}

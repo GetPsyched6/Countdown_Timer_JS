@@ -125,14 +125,12 @@ const timedown = () => {
 		//   ss[0].innerText = `0${Math.abs(seconds - target_second)}`;
 		// else ss[0].innerText = `${Math.abs(seconds - target_second)}`;
 		// TODO
-		if ((target_minute - minutes) < 10)
-		  mm[0].innerText = `0${(target_minute - minutes)}`;
-		else
-		mm[0].innerText = `${(target_minute - minutes)}`;
-		if ((target_second - seconds) < 10)
-		  ss[0].innerText = `0${(target_second - seconds)}`;
-		else
-		ss[0].innerText = `${(target_second - seconds)}`;
+		if (target_minute - minutes < 10)
+			mm[0].innerText = `0${target_minute - minutes}`;
+		else mm[0].innerText = `${target_minute - minutes}`;
+		if (target_second - seconds < 10)
+			ss[0].innerText = `0${target_second - seconds}`;
+		else ss[0].innerText = `${target_second - seconds}`;
 
 		if (Math.abs(target_day - days) == 1)
 			document.documentElement.style.setProperty("--dd-text", '" DAY"');

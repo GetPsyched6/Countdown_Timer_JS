@@ -1,45 +1,49 @@
-/* Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License */
+/*! Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License */
 @import url(reset.css);
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+@import url(modals.css);
+@import url(input.css);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap");
 
 @font-face {
 	font-family: "binder";
 	src: url(../fonts/bstyle_b.woff2);
+	font-display: fallback;
 }
 
 :root {
+	--accent-clr-main: #0599dd;
+	--accent-clr-secondary: #f11a7e;
 	--dd-text: "DAYS";
 	--hh-text: "HOURS";
 	--mm-text: "MINUTES";
 	--ss-text: "SECONDS";
+	--stop-opacity: 1;
+	--modal_one-opacity: 0;
 }
 
 html {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-	-webkit-box-sizing: inherit;
-	-moz-box-sizing: inherit;
 	box-sizing: inherit;
 }
 
 *::selection {
-	background: #d6144eda; /* Disable this to switch selection color to blue */
+	background: #0599ddbe; /* Disable this to switch selection color to blue */
 }
 
 body {
+	-webkit-tap-highlight-color: transparent;
 	background-color: #68225e;
-	background-image: url("../images/Artiom-Vallat-16_9.webp");
+	background-color: #00555d;
+	background-image: url("../images/Tchompalov_mini_blur.webp");
 	background-repeat: repeat;
 	background-size: cover;
 	font-family: "binder", "calibri";
 	font-style: oblique;
-	text-transform: uppercase;
 	position: relative;
 	color: white;
 	overflow: hidden;
@@ -49,6 +53,8 @@ body {
 .wrapper {
 	height: 100vh;
 	display: flow-root;
+	background-color: transparent;
+	transition: background-color 400ms ease;
 }
 
 .flex {
@@ -63,17 +69,37 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	font-size: 5.5rem;
+	text-align: center;
+	opacity: var(--stop-opacity);
+	transition: opacity 400ms ease;
 }
 
 .mini {
 	font-size: 4.25rem;
-	color: #f11a45;
+	text-shadow: 1px 4px 10px #2c2c2c40;
+	color: var(--accent-clr-main);
 }
 
 .name {
-	user-select: none;
 	-webkit-user-select: none;
+	user-select: none;
 	cursor: pointer;
+	color: inherit;
+	transition: color 400ms ease;
+}
+
+.name:hover,
+.name:focus-visible {
+	color: #05abdd;
+}
+
+.name:active {
+	color: #00ffbf;
+}
+
+.countdown_container {
+	margin-left: -10px;
+	opacity: var(--stop-opacity);
 }
 
 .countdown {
@@ -85,7 +111,8 @@ body {
 }
 
 .seconds {
-	color: #f11a45;
+	color: var(--accent-clr-main);
+	transition: color 150ms ease-in-out;
 }
 
 .countdown::after {
@@ -110,7 +137,7 @@ body {
 }
 
 .add {
-	position: absolute;
+	position: fixed;
 	border: 2px solid;
 	border-color: #ffffffcb;
 	background-color: #ffffff88;
@@ -126,27 +153,85 @@ body {
 	font-weight: 800;
 	font-style: normal;
 	text-align: center;
-	line-height: 39px;
+	line-height: 37px;
+	-webkit-user-select: none;
 	user-select: none;
 	cursor: pointer;
-	transition: border-color, background-color, color 150ms ease;
+	opacity: var(--stop-opacity);
+	transition: opacity, transform 400ms ease-in-out, border-color,
+		background-color, color 150ms ease;
 }
 
 .info {
 	right: revert;
 	left: 20px;
-	font-family: "consolas", "calibri";
-	text-transform: lowercase;
+	font-family: "consolas", monospace;
 	font-size: 2rem;
 	line-height: 42px;
+}
+
+.stop {
+	bottom: 0px;
+	left: 50%;
+	right: revert;
+	transform: translate(-50%, 60px);
+	transform-origin: bottom;
+	width: auto;
+	height: auto;
+	padding: 2.5px 35px;
+	line-height: revert;
+	border-width: 3px;
+	border-radius: 100vw;
+	border-color: #ffcee5cb;
+	font-family: "Arial", sans-serif;
+	font-weight: 400;
+	font-size: 2.5rem;
+	opacity: 1;
+}
+
+.mute {
+	left: 50%;
+	right: revert;
+	transform: translateX(-50%);
+	line-height: revert;
+}
+
+.mute > span {
+	font-size: 2rem;
 }
 
 .add:hover,
 .add:focus-visible {
 	border: 2px solid;
-	border-color: #ffffffef;
-	background-color: #ffffffa6;
-	color: #c70a30f1;
+	border-color: #ffffff;
+	background-color: #ffffff73;
+	color: #adffff;
+}
+
+.add:active {
+	color: #d4ffd4f1;
+	border-color: #ffffffaf;
+	background-color: #d3d3d37c;
+}
+
+.stop:hover {
+	border: 3px solid;
+}
+
+.audio_icon {
+	font-size: 2rem;
+	font-style: oblique;
+	transform: translateY(7.5px);
+}
+.song_name {
+	top: 0px;
+	position: absolute;
+	font-family: "helvetica", sans-serif;
+	font-size: 1.5rem;
+	font-style: normal;
+	transform: translateY(-40px) scaleY(0);
+	transform-origin: top;
+	transition: transform 800ms ease-in-out;
 }
 
 @media screen and (max-width: 94em) {
@@ -191,7 +276,10 @@ body {
 		white-space: normal;
 	}
 	.mini {
-		font-size: 3.5rem;
+		font-size: 4rem;
+	}
+	.countdown_container {
+		margin-left: -13.125px;
 	}
 	.countdown {
 		font-size: 7.5rem;
@@ -201,32 +289,26 @@ body {
 	.countdown::after {
 		font-size: 1.75rem;
 	}
-	.add {
-		width: 32px;
-		height: 32px;
-		font-size: 1.75rem;
-		line-height: 26px;
-	}
-	.info {
-		font-size: 1.5rem;
-		line-height: 28px;
+	.song_name {
+		margin-left: -15px;
+		font-size: 1.25rem;
 	}
 }
 
 @media screen and (max-width: 33.2em) {
 	.title h1 {
-		font-size: 4rem;
+		font-size: 3.85rem;
 		white-space: normal;
 	}
 	.mini {
-		font-size: 3rem;
+		font-size: 3.85rem;
 	}
 	.countdown {
-		font-size: 4rem;
+		font-size: 4.8rem;
 		margin-inline: 1.25rem;
 		width: 45px;
 	}
 	.countdown::after {
-		font-size: 1.5rem;
+		font-size: 1.6125rem;
 	}
 }
