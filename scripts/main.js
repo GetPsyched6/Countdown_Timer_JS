@@ -3,7 +3,7 @@ let target; // the target date it count downs to.
 let interval; // how long set interval takes (default 1000ms)
 let running; // the setInterval variable
 let alarm_flag; // whether the alarm should ring or not.
-let unmute_flag = 0; // whether alarm is muted currently
+let vol_on_flag = 0; // whether alarm is muted currently
 let dd = document.getElementsByClassName("days");
 let hh = document.getElementsByClassName("hours");
 let mm = document.getElementsByClassName("minutes");
@@ -27,7 +27,7 @@ const minutes_to_midnight = () => {
 	audio.volume = 0.3;
 	beep.volume = 0.5;
 	document.documentElement.style.setProperty("--modal_one-opacity", "1");
-	ss[0].style.color = "var(--accent-clr-main)";
+	document.documentElement.style.setProperty("--accent-clr-main", "#0599dd");
 	target_acquired(); // set the default parameters target date onload
 	timekeeper(); // start the countdown
 	key_binds(); // key binds to different functions
@@ -38,9 +38,9 @@ const target_acquired = (
 	t_year = 2021,
 	t_month = 11,
 	t_day = 2,
-	t_hour = 7,
-	t_min = 55,
-	t_sec = 0
+	t_hour = 10,
+	t_min = 6,
+	t_sec = 30
 ) => {
 	let target_year = t_year;
 	let target_month = t_month;
@@ -102,7 +102,10 @@ const countdown = () => {
 	else document.documentElement.style.setProperty("--ss-text", '"SECONDS"');
 	if (day == 0 && hour == 0 && minute == 0 && second == 10) {
 		beep.play();
-		ss[0].style.color = "var(--accent-clr-secondary)";
+		document.documentElement.style.setProperty(
+			"--accent-clr-main",
+			"#f11a7e"
+		);
 	}
 	if ((day == 0 && hour == 0 && minute == 0 && second == 0) || day < 0)
 		alarm_flag = 1;
@@ -124,7 +127,7 @@ const stop_countdown = () => {
 	}
 	document.getElementsByClassName("stop")[0].style.transform =
 		"translate(-50%, -100px)";
-	if (unmute_flag == 1) {
+	if (vol_on_flag == 1) {
 		document.getElementsByClassName("song_name")[0].style.transform =
 			"translateY(15px) scaleY(1)";
 	}
@@ -173,10 +176,9 @@ const newtimer = (flag) => {
 		modal_two.style.transform = "scaleY(0)";
 		document.getElementById("year_input").blur();
 	} else if (flag == 3) {
-		document.querySelector(".d_two_main")
-		document.querySelector(".d_two_next")
-	}
-	 else {
+		document.querySelector(".d_two_main");
+		document.querySelector(".d_two_next");
+	} else {
 		let blank_date = new Date();
 		let user_year = parseInt(year_text_box.value);
 		let user_month = parseInt(month_text_box.value);
@@ -199,7 +201,10 @@ const newtimer = (flag) => {
 			if (isNaN(user_minute)) user_minute = 0;
 			if (isNaN(user_second)) user_second = 0;
 			alarm_flag = 0; // 0 means don't ring the alarm as there's a new target
-			ss[0].style.color = "var(--accent-clr-main)"; // reverting the clr to blue
+			document.documentElement.style.setProperty(
+				"--accent-clr-main",
+				"#0599dd"
+			); // reverting the clr to blue
 			target_acquired(
 				user_year,
 				user_month,
@@ -218,11 +223,11 @@ const close_modal = (flag) => {
 	modal_one.style.display = "none";
 	document.documentElement.style.setProperty("--modal_one-opacity", "0");
 	if (flag == 1) {
-		unmute_flag = 1;
+		vol_on_flag = 1;
 		apply_mute();
 	} else {
 		vol_icon.innerText = "volume_off";
-		unmute_flag = 0;
+		vol_on_flag = 0;
 	}
 };
 
@@ -238,18 +243,18 @@ const info_modal = (flag) => {
 const mute_icon = () => {
 	if (vol_icon.innerText == "volume_up") {
 		vol_icon.innerText = "volume_off";
-		unmute_flag = 0;
+		vol_on_flag = 0;
 		apply_mute();
 	} else {
 		vol_icon.innerText = "volume_up";
-		unmute_flag = 1;
+		vol_on_flag = 1;
 		apply_mute();
 	}
 };
 
 // * Global Muter, All muting methods go through here
 const apply_mute = () => {
-	if (unmute_flag == 0) {
+	if (vol_on_flag == 0) {
 		audio.muted = true;
 		beep.muted = true;
 	} else {
