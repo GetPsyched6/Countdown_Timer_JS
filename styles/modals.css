@@ -48,11 +48,19 @@
 	width: 32.125rem;
 }
 
-/*! .d_two_main {
+.d_two_main {
+	display: block;
 	transition: transform 400ms ease;
 	transform-origin: left;
-	transform: scaleY(1);
-} */
+	transform: translateX(0rem);
+}
+
+.d_two_next {
+	display: none;
+	transition: transform 400ms ease;
+	transform-origin: right;
+	transform: translateX(32.5rem);
+}
 
 .dialog_three {
 	transition: transform 400ms ease;
