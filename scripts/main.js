@@ -3,7 +3,7 @@ let target; // the target date it count downs to.
 let interval; // how long set interval takes (default 1000ms)
 let running; // the setInterval variable
 let alarm_flag; // whether the alarm should ring or not.
-let unmute_flag = 0; // whether alarm is muted currently
+let vol_on_flag = 0; // whether alarm is muted currently
 let dd = document.getElementsByClassName("days");
 let hh = document.getElementsByClassName("hours");
 let mm = document.getElementsByClassName("minutes");
@@ -38,9 +38,9 @@ const target_acquired = (
 	t_year = 2021,
 	t_month = 11,
 	t_day = 2,
-	t_hour = 9,
-	t_min = 59,
-	t_sec = 0
+	t_hour = 10,
+	t_min = 6,
+	t_sec = 30
 ) => {
 	let target_year = t_year;
 	let target_month = t_month;
@@ -127,7 +127,7 @@ const stop_countdown = () => {
 	}
 	document.getElementsByClassName("stop")[0].style.transform =
 		"translate(-50%, -100px)";
-	if (unmute_flag == 1) {
+	if (vol_on_flag == 1) {
 		document.getElementsByClassName("song_name")[0].style.transform =
 			"translateY(15px) scaleY(1)";
 	}
@@ -223,11 +223,11 @@ const close_modal = (flag) => {
 	modal_one.style.display = "none";
 	document.documentElement.style.setProperty("--modal_one-opacity", "0");
 	if (flag == 1) {
-		unmute_flag = 1;
+		vol_on_flag = 1;
 		apply_mute();
 	} else {
 		vol_icon.innerText = "volume_off";
-		unmute_flag = 0;
+		vol_on_flag = 0;
 	}
 };
 
@@ -243,18 +243,18 @@ const info_modal = (flag) => {
 const mute_icon = () => {
 	if (vol_icon.innerText == "volume_up") {
 		vol_icon.innerText = "volume_off";
-		unmute_flag = 0;
+		vol_on_flag = 0;
 		apply_mute();
 	} else {
 		vol_icon.innerText = "volume_up";
-		unmute_flag = 1;
+		vol_on_flag = 1;
 		apply_mute();
 	}
 };
 
 // * Global Muter, All muting methods go through here
 const apply_mute = () => {
-	if (unmute_flag == 0) {
+	if (vol_on_flag == 0) {
 		audio.muted = true;
 		beep.muted = true;
 	} else {
