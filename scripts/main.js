@@ -160,6 +160,10 @@ const newtimer = (flag) => {
 	let hour_text_box = document.getElementById("hour_input");
 	let minute_text_box = document.getElementById("minute_input");
 	let second_text_box = document.getElementById("second_input");
+	let dialog_two_main = document.querySelector(".d_two_main");
+	let dialog_two_next = document.querySelector(".d_two_next");
+	let btn_next = document.querySelector("#btn_next");
+
 	if (flag == 0) {
 		year_text_box.value = "";
 		month_text_box.value = "";
@@ -171,13 +175,38 @@ const newtimer = (flag) => {
 		modal_two.style.transform = "scaleY(1)";
 		setTimeout(function () {
 			document.getElementById("year_input").focus();
-		}, 500);
+		}, 400);
 	} else if (flag == 2) {
 		modal_two.style.transform = "scaleY(0)";
 		document.getElementById("year_input").blur();
 	} else if (flag == 3) {
-		document.querySelector(".d_two_main");
-		document.querySelector(".d_two_next");
+		dialog_two_main.style.transform = "translateX(-32.5rem)";
+		btn_next.type = "button";
+		setTimeout(function () {
+			dialog_two_main.style.display = "none";
+			dialog_two_next.style.display = "block";
+		}, 150);
+
+		setTimeout(function () {
+			dialog_two_next.style.transform = "translateX(0rem)";
+		}, 175);
+		setTimeout(function () {
+			document.getElementById("hour_input").focus();
+		}, 500);
+	} else if (flag == 4) {
+		dialog_two_next.style.transform = "translateX(32.5rem)";
+		btn_next.type = "submit";
+		setTimeout(function () {
+			dialog_two_next.style.display = "none";
+			dialog_two_main.style.display = "block";
+		}, 150);
+
+		setTimeout(function () {
+			dialog_two_main.style.transform = "translateX(0rem)";
+		}, 175);
+		setTimeout(function () {
+			document.getElementById("year_input").focus();
+		}, 500);
 	} else {
 		let blank_date = new Date();
 		let user_year = parseInt(year_text_box.value);
@@ -189,6 +218,11 @@ const newtimer = (flag) => {
 		// if text box is not in an invalid state, do these
 		if (document.querySelector(".text_box:invalid") == null) {
 			modal_two.style.transform = "scaleY(0)";
+			dialog_two_next.style.transform = "translateX(32.5rem)";
+			btn_next.type = "submit";
+			dialog_two_next.style.display = "none";
+			dialog_two_main.style.display = "block";
+			dialog_two_main.style.transform = "translateX(0rem)";
 			document.getElementById("year_input").blur();
 			user_month--;
 			if (isNaN(user_year)) user_year = blank_date.getFullYear();
@@ -270,7 +304,7 @@ const change_name = (flag) => {
 		document.getElementById("cd_name_input").value = "";
 		setTimeout(function () {
 			document.getElementById("cd_name_input").focus();
-		}, 500);
+		}, 400);
 	} else if (flag == 2) {
 		modal_four.style.transform = "translateY(-275px) scaleY(0)";
 		document.getElementById("cd_name_input").blur();

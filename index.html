@@ -69,116 +69,136 @@
 						class="form_newtimer"
 						onsubmit="event.preventDefault();"
 					>
-						<div class="inputs year_input">
-							<div class="labels year_label">
-								<label for="year_input">Year</label>
+						<div class="d_two_main">
+							<div class="inputs year_input">
+								<div class="labels year_label">
+									<label for="year_input">Year</label>
+								</div>
+								<input
+									type="text"
+									id="year_input"
+									class="text_box"
+									name="year_ip"
+									placeholder="YYYY"
+									maxlength="4"
+									autocomplete="off"
+									title="Integer 4 digits only. 2021 to 2099"
+									pattern="^((?!\.)20([3-9]\d|2[1-9]))$"
+								/>
 							</div>
-							<input
-								type="text"
-								id="year_input"
-								class="text_box"
-								name="year_ip"
-								placeholder="YYYY"
-								maxlength="4"
-								autocomplete="off"
-								title="Integer 4 digits only. 2021 to 2099"
-								pattern="^((?!\.)20([3-9]\d|2[1-9]))$"
-							/>
-						</div>
-						<div class="inputs month_input">
-							<div class="labels month_label">
-								<label for="month_input">Month</label>
+							<div class="inputs month_input">
+								<div class="labels month_label">
+									<label for="month_input">Month</label>
+								</div>
+								<input
+									type="text"
+									id="month_input"
+									class="text_box"
+									name="month_ip"
+									placeholder="MM"
+									maxlength="2"
+									autocomplete="off"
+									title="Integer 1 or 2 digits only. 1 to 12"
+									pattern="^((?!\.)[1-9]|1[0-2])$"
+								/>
 							</div>
-							<input
-								type="text"
-								id="month_input"
-								class="text_box"
-								name="month_ip"
-								placeholder="MM"
-								maxlength="2"
-								autocomplete="off"
-								title="Integer 1 or 2 digits only. 1 to 12"
-								pattern="^((?!\.)[1-9]|1[0-2])$"
-							/>
-						</div>
-						<div class="inputs day_input">
-							<div class="labels day_label">
-								<label for="day_input">Day</label>
+							<div class="inputs day_input">
+								<div class="labels day_label">
+									<label for="day_input">Day</label>
+								</div>
+								<input
+									type="text"
+									id="day_input"
+									class="text_box"
+									name="day_ip"
+									placeholder="DD"
+									maxlength="2"
+									autocomplete="off"
+									title="Integer 1 or 2 digits only. 1 to 31"
+									pattern="^((?!\.)0?[1-9]|([1-2]\d)|3[0-1])$"
+								/>
 							</div>
-							<input
-								type="text"
-								id="day_input"
-								class="text_box"
-								name="day_ip"
-								placeholder="DD"
-								maxlength="2"
-								autocomplete="off"
-								title="Integer 1 or 2 digits only. 1 to 31"
-								pattern="^((?!\.)0?[1-9]|([1-2]\d)|3[0-1])$"
-							/>
+							<button
+								type="submit"
+								id="btn_next"
+								class="button btn_accept"
+								onclick="newtimer(3)"
+							>
+								Next
+							</button>
+							<button
+								type="button"
+								class="button btn_cancel btn_spacer"
+								onclick="newtimer(2)"
+							>
+								Cancel
+							</button>
 						</div>
-						<div class="inputs hour_input">
-							<div class="labels hour_label">
-								<label for="hour_input">Hour</label>
+						<div class="d_two_next">
+							<div class="inputs hour_input">
+								<div class="labels hour_label">
+									<label for="hour_input">Hour</label>
+								</div>
+								<input
+									type="text"
+									id="hour_input"
+									class="text_box"
+									name="hour_ip"
+									placeholder="hh"
+									maxlength="2"
+									autocomplete="off"
+									title="Integer 1 or 2 digits only. 0 to 23"
+									pattern="^((?!\.)[0-1]?\d|2[0-3])$"
+								/>
 							</div>
-							<input
-								type="text"
-								id="hour_input"
-								class="text_box"
-								name="hour_ip"
-								placeholder="hh"
-								maxlength="2"
-								autocomplete="off"
-								title="Integer 1 or 2 digits only. 0 to 23"
-								pattern="^((?!\.)[0-1]?\d|2[0-3])$"
-							/>
-						</div>
-						<div class="inputs minute_input">
-							<div class="labels minute_label">
-								<label for="minute_input">Minute</label>
+							<div class="inputs minute_input">
+								<div class="labels minute_label">
+									<label for="minute_input">Minute</label>
+								</div>
+								<input
+									type="text"
+									id="minute_input"
+									class="text_box"
+									name="minute_ip"
+									placeholder="mm"
+									maxlength="2"
+									autocomplete="off"
+									title="Integer 1 or 2 digits only. 0 to 59"
+									pattern="^((?!\.)[0-5]?\d)$"
+								/>
 							</div>
-							<input
-								type="text"
-								id="minute_input"
-								class="text_box"
-								name="minute_ip"
-								placeholder="mm"
-								maxlength="2"
-								autocomplete="off"
-								title="Integer 1 or 2 digits only. 0 to 59"
-								pattern="^((?!\.)[0-5]?\d)$"
-							/>
-						</div>
-						<div class="inputs second_input">
-							<div class="labels second_label">
-								<label for="second_input">Second</label>
+							<div class="inputs second_input">
+								<div class="labels second_label">
+									<label for="second_input">Second</label>
+								</div>
+								<input
+									type="text"
+									id="second_input"
+									class="text_box"
+									name="second_ip"
+									placeholder="ss"
+									maxlength="2"
+									autocomplete="off"
+									title="Integer 1 or 2 digits only. 0 to 59"
+									pattern="^((?!\.)[0-5]?\d)$"
+								/>
 							</div>
-							<input
-								type="text"
-								id="second_input"
-								class="text_box"
-								name="second_ip"
-								placeholder="ss"
-								maxlength="2"
-								autocomplete="off"
-								title="Integer 1 or 2 digits only. 0 to 59"
-								pattern="^((?!\.)[0-5]?\d)$"
-							/>
+							<button
+								type="submit"
+								id="btn_submit"
+								class="button btn_accept"
+								onclick="newtimer(1)"
+							>
+								Submit
+							</button>
+							<button
+								type="button"
+								class="button btn_cancel btn_spacer"
+								onclick="newtimer(4)"
+							>
+								Back
+							</button>
 						</div>
-						<button
-							type="submit"
-							class="button btn_accept"
-							onclick="newtimer(1)"
-						>
-							Submit
-						</button>
-						<button
-							type="button"
-							class="button btn_cancel btn_spacer"
-							onclick="newtimer(2)"
-						>
-							Cancel
-						</button>
 					</form>
 				</div>
 			</div>
@@ -305,7 +325,9 @@
 				<div class="countdown seconds">00</div>
 			</div>
 		</div>
-		<div class="add info" onclick="info_modal(0)">i</div>
+		<div class="add info" title="Information" onclick="info_modal(0)">
+			i
+		</div>
 		<div
 			class="add mute"
 			onclick="mute_icon()"
@@ -313,8 +335,10 @@
 		>
 			<span class="material-icons-round volume">volume_up</span>
 		</div>
-		<div class="add stop" onclick="stop_alarm()">Dismiss</div>
-		<div class="add new_cd" onclick="newtimer(0)">+</div>
+		<div class="add stop" title="Stop Alarm" onclick="stop_alarm()">
+			Dismiss
+		</div>
+		<div class="add new_cd" title="New Timer" onclick="newtimer(0)">+</div>
 		<audio class="alarm" preload="auto" muted="true">
 			<source src="music/33.aac" type="audio/mp4" />
 			Your browser does not support the audio element.

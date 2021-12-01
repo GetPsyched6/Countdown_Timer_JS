@@ -75,7 +75,7 @@ body {
 
 .mini {
 	font-size: 4.25rem;
-	text-shadow: 1px 4px 10px #2c2c2c50;
+	text-shadow: 1px 4px 10px #2c2c2c70;
 	color: var(--accent-clr-main);
 }
 
@@ -93,6 +93,7 @@ body {
 }
 
 .name:active {
+	transition-duration: 0ms;
 	color: #00ffbf;
 }
 
