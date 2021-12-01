@@ -180,19 +180,21 @@ const newtimer = (flag) => {
 		modal_two.style.transform = "scaleY(0)";
 		document.getElementById("year_input").blur();
 	} else if (flag == 3) {
-		dialog_two_main.style.transform = "translateX(-32.5rem)";
-		btn_next.type = "button";
-		setTimeout(function () {
-			dialog_two_main.style.display = "none";
-			dialog_two_next.style.display = "block";
-		}, 150);
+		if (document.querySelector(".d2_main_box:invalid") == null) {
+			dialog_two_main.style.transform = "translateX(-32.5rem)";
+			btn_next.type = "button";
+			setTimeout(function () {
+				dialog_two_main.style.display = "none";
+				dialog_two_next.style.display = "block";
+			}, 150);
 
-		setTimeout(function () {
-			dialog_two_next.style.transform = "translateX(0rem)";
-		}, 175);
-		setTimeout(function () {
-			document.getElementById("hour_input").focus();
-		}, 500);
+			setTimeout(function () {
+				dialog_two_next.style.transform = "translateX(0rem)";
+			}, 175);
+			setTimeout(function () {
+				document.getElementById("hour_input").focus();
+			}, 500);
+		}
 	} else if (flag == 4) {
 		dialog_two_next.style.transform = "translateX(32.5rem)";
 		btn_next.type = "submit";
@@ -216,7 +218,7 @@ const newtimer = (flag) => {
 		let user_minute = parseInt(minute_text_box.value);
 		let user_second = parseInt(second_text_box.value);
 		// if text box is not in an invalid state, do these
-		if (document.querySelector(".text_box:invalid") == null) {
+		if (document.querySelector(".d2_box:invalid") == null) {
 			modal_two.style.transform = "scaleY(0)";
 			dialog_two_next.style.transform = "translateX(32.5rem)";
 			btn_next.type = "submit";
@@ -254,8 +256,10 @@ const newtimer = (flag) => {
 
 // * The Modal to Allow or Deny Alarm Music
 const close_modal = (flag) => {
-	modal_one.style.display = "none";
 	document.documentElement.style.setProperty("--modal_one-opacity", "0");
+	setTimeout(function () {
+		modal_one.style.display = "none";
+	}, 500);
 	if (flag == 1) {
 		vol_on_flag = 1;
 		apply_mute();
@@ -312,11 +316,11 @@ const change_name = (flag) => {
 		let user_name = document.getElementById("cd_name_input").value;
 		user_name = user_name.toUpperCase();
 		// if text box is not in an invalid state, do these
-		if (document.querySelector(".text_box:invalid") == null) {
+		if (document.querySelector(".d4_box:invalid") == null) {
 			modal_four.style.transform = "translateY(-275px) scaleY(0)";
 			document.getElementById("cd_name_input").blur();
-			if (user_name == "" || user_name == null) user_name = "ARRIVAL";
-			else namech[0].innerText = user_name;
+			if (user_name != "" && user_name != null)
+				namech[0].innerText = user_name;
 		}
 	}
 };
