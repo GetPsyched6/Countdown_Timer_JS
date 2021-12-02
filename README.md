@@ -2,7 +2,9 @@
 
 ## Custom Beautiful Countdowns!
 
+
 ![image](https://user-images.githubusercontent.com/3417276/144429323-9979e812-5b00-46a1-bfae-e7d8959117ea.png)
+
 
 ### Welcome to Aurora Sparkles, personal project of GetPsyched6.
 
@@ -18,14 +20,16 @@
 - Keyboard Shortcuts! Click on the `i` button on the site to know more.
 - All user added data stored in LocalStorage, so your preferences will be there the next time you visit.
 
+
 ![image](https://user-images.githubusercontent.com/3417276/144431378-7cf3523f-4822-439f-b5bb-3e95fd7d72e9.png)
+
 
 #### Planned Features:
 
-- Allow users to change timeout music.
+- Allow users to the change timeout music.
 - Allow users to edit the background.
 - More intuitive method to create a new countdown.
 
-### Licence
-#### MIT Licence, You are free to use for any purpose, legally withstanding.
+## Licence
+### MIT Licence, You are free to use for any purpose, legally withstanding.
 
