@@ -1,6 +1,5 @@
 //! Attribution Roshin Nishad 2021 Nov | GetPsyched6 © | MIT License
 let target; // the target date it count downs to.
-let interval; // how long set interval takes (default 1000ms)
 let running; // the setInterval variable
 let alarm_flag; // whether the alarm should ring or not.
 let vol_on_flag = 0; // whether alarm is muted currently
@@ -8,7 +7,6 @@ let dd = document.getElementsByClassName("days");
 let hh = document.getElementsByClassName("hours");
 let mm = document.getElementsByClassName("minutes");
 let ss = document.getElementsByClassName("seconds");
-let namech = document.getElementsByClassName("name"); // [Arrival] - changes this
 let modal_one = document.querySelector(".dialog_one"); // Allow or Deny Alarm Sounds Modal
 let modal_two = document.querySelector(".dialog_two"); // New Timer Modal
 let modal_three = document.querySelector(".dialog_three"); // Info Modal
@@ -22,8 +20,8 @@ let info_button = document.querySelector(".info"); // the info button
 
 // * onload function
 const minutes_to_midnight = () => {
+	localstore();
 	alarm_flag = 0; // 0 means don't ring the alarm
-	interval = 1000;
 	audio.volume = 0.3;
 	beep.volume = 0.5;
 	document.documentElement.style.setProperty("--modal_one-opacity", "1");
@@ -38,8 +36,8 @@ const target_acquired = (
 	t_year = 2021,
 	t_month = 11,
 	t_day = 2,
-	t_hour = 10,
-	t_min = 6,
+	t_hour = 18,
+	t_min = 55,
 	t_sec = 30
 ) => {
 	let target_year = t_year;
@@ -64,7 +62,7 @@ const timekeeper = () => {
 	running = setInterval(function () {
 		if (alarm_flag == 0) countdown();
 		else stop_countdown();
-	}, interval);
+	}, 1000);
 };
 
 // * This displays the countdown on screen
@@ -123,7 +121,7 @@ const stop_countdown = () => {
 	{
 		document.documentElement.style.setProperty("--stop-opacity", "0.15");
 		document.getElementsByClassName("wrapper")[0].style.backgroundColor =
-			"#05abdd25"; //#f11a7e25
+			"#05abad25"; //#f11a7e25
 	}
 	document.getElementsByClassName("stop")[0].style.transform =
 		"translate(-50%, -100px)";
@@ -303,6 +301,7 @@ const apply_mute = () => {
 
 // * Allows you to change the name of the countdown
 const change_name = (flag) => {
+	let namech = document.getElementsByClassName("name");
 	if (flag == 0) {
 		modal_four.style.transform = "translateY(30px) scaleY(1)";
 		document.getElementById("cd_name_input").value = "";
@@ -319,14 +318,24 @@ const change_name = (flag) => {
 		if (document.querySelector(".d4_box:invalid") == null) {
 			modal_four.style.transform = "translateY(-275px) scaleY(0)";
 			document.getElementById("cd_name_input").blur();
-			if (user_name != "" && user_name != null)
+			if (user_name != "" && user_name != null) {
 				namech[0].innerText = user_name;
+				localStorage.setItem("name", user_name);
+			}
 		}
 	}
 };
 
+// * get localstorage function
+const localstore = () => {
+	let namech = document.getElementsByClassName("name");
+	if (localStorage.getItem("name") != null)
+		namech[0].innerText = localStorage.getItem("name");
+};
+
 // * Key shortcuts function
 const key_binds = () => {
+	let namech = document.getElementsByClassName("name");
 	Mousetrap.bind("m", function () {
 		mute_button.style.webkitTextFillColor = "#adffff";
 		setTimeout(function () {
