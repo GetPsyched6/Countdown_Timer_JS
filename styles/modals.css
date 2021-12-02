@@ -158,7 +158,7 @@ kbd {
 .button:focus-visible {
 	border: 2px solid;
 	border-color: #ffffff;
-	background-color: #ffffff73;
+	background-color: #ffffff80;
 }
 
 .btn_cancel {
