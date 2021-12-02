@@ -2,8 +2,9 @@
 
 ## Custom Beautiful Countdowns!
 
+<h3><a href="https://getpsyched6-countdown.netlify.app/" target="_blank">Link to site - Aurora Sparkles</a></h3><br/>
 
-![image](https://user-images.githubusercontent.com/3417276/144429323-9979e812-5b00-46a1-bfae-e7d8959117ea.png)
+![image](https://user-images.githubusercontent.com/3417276/144429323-9979e812-5b00-46a1-bfae-e7d8959117ea.png)<br/>
 
 
 ### Welcome to Aurora Sparkles, personal project of GetPsyched6.
@@ -21,8 +22,8 @@
 - All user added data stored in LocalStorage, so your preferences will be there the next time you visit.
 
 
-![image](https://user-images.githubusercontent.com/3417276/144431378-7cf3523f-4822-439f-b5bb-3e95fd7d72e9.png)
-
+<br/>![image](https://user-images.githubusercontent.com/3417276/144431378-7cf3523f-4822-439f-b5bb-3e95fd7d72e9.png)
+<br/>
 
 #### Planned Features:
 
