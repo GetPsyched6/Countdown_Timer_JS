@@ -31,5 +31,5 @@
 - More intuitive method to create a new countdown.
 
 ### Licence:
-#### MIT Licence, You are free to use for any purpose, legally withstanding.
+MIT Licence, You are free to use for any purpose, legally withstanding.
 
