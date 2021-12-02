@@ -9,6 +9,7 @@
 #### List of Features:
 
 - A beautiful coat of paint, dripping with creative induviduality.
+- Responsive to all modern screen sizes.
 - Stunning Animations for all modals and buttons! Smooth and silky.
 - Change the name of the countdown to anything you want! Just click on it.
 - Make your own Countdown! Click on the plus button on the bottom right corner.
