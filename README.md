@@ -12,7 +12,7 @@
 - Stunning Animations for all modals and buttons! Smooth and silky.
 - Change the name of the countdown to anything you want! Just click on it.
 - Make your own Countdown! Click on the plus button on the bottom right corner.
-- Countdown end Alarm and last 10 seconds warning beep with a visual change along with it.
+- Timeout alarm and last 10 seconds warning beep along with a visual cue.
 - Mute or Unmute whenever you want with the mute button, no annoying autoplay here.
 - Keyboard Shortcuts! Click on the `i` button on the site to know more.
 - All user added data stored in LocalStorage, so your preferences will be there the next time you visit.
