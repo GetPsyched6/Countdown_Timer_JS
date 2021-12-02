@@ -3,32 +3,60 @@ let target; // the target date it count downs to.
 let running; // the setInterval variable
 let alarm_flag; // whether the alarm should ring or not.
 let vol_on_flag = 0; // whether alarm is muted currently
-let dd = document.getElementsByClassName("days");
-let hh = document.getElementsByClassName("hours");
-let mm = document.getElementsByClassName("minutes");
-let ss = document.getElementsByClassName("seconds");
-let modal_one = document.querySelector(".dialog_one"); // Allow or Deny Alarm Sounds Modal
-let modal_two = document.querySelector(".dialog_two"); // New Timer Modal
-let modal_three = document.querySelector(".dialog_three"); // Info Modal
-let modal_four = document.querySelector(".dialog_four"); // Name Change Modal
-let audio = document.getElementsByClassName("alarm")[0]; // the alarm audio
-let beep = document.getElementsByClassName("beep")[0]; // the alarm audio
-let vol_icon = document.getElementsByClassName("volume")[0]; // the volume icon
-let mute_button = document.getElementsByClassName("mute")[0]; // the volume button
-let new_button = document.querySelector(".new_cd"); // the new timer button
-let info_button = document.querySelector(".info"); // the info button
+let mute_icon_clicked = 0; // to know if mute button was clicked
+let beep = document.querySelector(".beep"); // the alarm warning
+let dd = document.querySelector(".days");
+let hh = document.querySelector(".hours");
+let mm = document.querySelector(".minutes");
+let ss = document.querySelector(".seconds");
 
 // * onload function
 const minutes_to_midnight = () => {
-	localstore();
+	let audio = document.querySelector(".alarm");
 	alarm_flag = 0; // 0 means don't ring the alarm
 	audio.volume = 0.3;
 	beep.volume = 0.5;
-	document.documentElement.style.setProperty("--modal_one-opacity", "1");
-	document.documentElement.style.setProperty("--accent-clr-main", "#0599dd");
-	target_acquired(); // set the default parameters target date onload
+	localstore(); // getting user's preference
 	timekeeper(); // start the countdown
 	key_binds(); // key binds to different functions
+};
+
+// * get localstorage function
+const localstore = () => {
+	let no_of_visits = 1;
+	let namech = document.querySelector(".name");
+	if (localStorage.getItem("visited") == null) {
+		localStorage.setItem("visited", no_of_visits);
+		document.documentElement.style.setProperty("--modal_one-opacity", "1");
+	} else {
+		no_of_visits += parseInt(localStorage.getItem("visited"));
+		localStorage.setItem("visited", no_of_visits);
+		if (no_of_visits % 5 == 0)
+			document.documentElement.style.setProperty(
+				"--modal_one-opacity",
+				"1"
+			);
+		else close_modal();
+	}
+	if (localStorage.getItem("new_year") != null) {
+		tar_year = parseInt(localStorage.getItem("new_year"));
+		tar_month = parseInt(localStorage.getItem("new_month"));
+		tar_day = parseInt(localStorage.getItem("new_day"));
+		tar_hour = parseInt(localStorage.getItem("new_hour"));
+		tar_min = parseInt(localStorage.getItem("new_minute"));
+		tar_sec = parseInt(localStorage.getItem("new_second"));
+		target_acquired(
+			// set the default parameters target date
+			tar_year,
+			tar_month,
+			tar_day,
+			tar_hour,
+			tar_min,
+			tar_sec
+		);
+	} else target_acquired();
+	if (localStorage.getItem("name") != null)
+		namech.innerText = localStorage.getItem("name");
 };
 
 // * Setting the target date here. Defaulted by parameters t_*
@@ -67,6 +95,8 @@ const timekeeper = () => {
 
 // * This displays the countdown on screen
 const countdown = () => {
+	let visit = localStorage.getItem("visited");
+	let sec_mute = document.querySelector(".secondary_mute");
 	let date = Date.now();
 	let ms_diff = target.getTime() - date; // ms between target and current time
 	let day = Math.floor(ms_diff / 86400000); // 24 * 3600 * 1000
@@ -76,14 +106,14 @@ const countdown = () => {
 		ms_diff / 1000 - day * 86400 - hour * 3600 - minute * 60
 	);
 
-	if (day >= 0 && day < 10) dd[0].innerText = `0${day}`;
-	else dd[0].innerText = `${day}`;
-	if (hour >= 0 && hour < 10) hh[0].innerText = `0${hour}`;
-	else hh[0].innerText = `${hour}`;
-	if (minute >= 0 && minute < 10) mm[0].innerText = `0${minute}`;
-	else mm[0].innerText = `${minute}`;
-	if (second >= 0 && second < 10) ss[0].innerText = `0${second}`;
-	else ss[0].innerText = `${second}`;
+	if (day >= 0 && day < 10) dd.innerText = `0${day}`;
+	else dd.innerText = `${day}`;
+	if (hour >= 0 && hour < 10) hh.innerText = `0${hour}`;
+	else hh.innerText = `${hour}`;
+	if (minute >= 0 && minute < 10) mm.innerText = `0${minute}`;
+	else mm.innerText = `${minute}`;
+	if (second >= 0 && second < 10) ss.innerText = `0${second}`;
+	else ss.innerText = `${second}`;
 
 	// editing the after psuedoclass for unit time content
 	if (day == 1)
@@ -98,6 +128,19 @@ const countdown = () => {
 	if (second == 1)
 		document.documentElement.style.setProperty("--ss-text", '" SECOND"');
 	else document.documentElement.style.setProperty("--ss-text", '"SECONDS"');
+	if (visit != 1 && visit % 5 != 0 && mute_icon_clicked == 0) {
+		sec_mute.style.borderWidth = "3px";
+		if (second % 2 == 0) {
+			sec_mute.style.borderColor =
+				"#00ffff";
+		} else
+			sec_mute.style.borderColor =
+				"revert";
+	} else if (mute_icon_clicked == 1) {
+		sec_mute.style.borderColor = "revert";
+		sec_mute.style.borderWidth = "2px";
+		mute_icon_clicked = 2;
+	}
 	if (day == 0 && hour == 0 && minute == 0 && second == 10) {
 		beep.play();
 		document.documentElement.style.setProperty(
@@ -111,22 +154,21 @@ const countdown = () => {
 
 // * Stops countdown, plays alarm, shows stop button
 const stop_countdown = () => {
+	let audio = document.querySelector(".alarm");
 	clearInterval(running);
-	dd[0].innerText = `00`;
-	hh[0].innerText = `00`;
-	mm[0].innerText = `00`;
-	ss[0].innerText = `00`;
+	dd.innerText = `00`;
+	hh.innerText = `00`;
+	mm.innerText = `00`;
+	ss.innerText = `00`;
 	audio.play();
 	// changes opacity of certain elements when countdown is over
 	{
 		document.documentElement.style.setProperty("--stop-opacity", "0.15");
-		document.getElementsByClassName("wrapper")[0].style.backgroundColor =
-			"#05abad25"; //#f11a7e25
+		document.querySelector(".wrapper").style.backgroundColor = "#05abad25"; //#f11a7e25
 	}
-	document.getElementsByClassName("stop")[0].style.transform =
-		"translate(-50%, -100px)";
+	document.querySelector(".stop").style.transform = "translate(-50%, -100px)";
 	if (vol_on_flag == 1) {
-		document.getElementsByClassName("song_name")[0].style.transform =
+		document.querySelector(".song_name").style.transform =
 			"translateY(15px) scaleY(1)";
 	}
 	setTimeout(stop_alarm, 30000);
@@ -134,30 +176,29 @@ const stop_countdown = () => {
 
 // * What happens when you press the Stop button at countdown end
 const stop_alarm = () => {
-	if (
-		document.getElementsByClassName("stop")[0].style.transform ==
-		"translate(-50%, -100px)"
-	) {
+	let audio = document.querySelector(".alarm");
+	let stop_button = document.querySelector(".stop");
+	if (stop_button.style.transform == "translate(-50%, -100px)") {
 		audio.pause();
 		// resets all the effects
 		document.documentElement.style.setProperty("--stop-opacity", "1");
-		document.getElementsByClassName("wrapper")[0].style.backgroundColor =
+		document.querySelector(".wrapper").style.backgroundColor =
 			"transparent";
-		document.getElementsByClassName("stop")[0].style.transform =
-			"translate(-50%, 60px)";
-		document.getElementsByClassName("song_name")[0].style.transform =
+		stop_button.style.transform = "translate(-50%, 60px)";
+		document.querySelector(".song_name").style.transform =
 			"translateY(-40px) scaleY(0)";
 	}
 };
 
 // * Allows users to create a new target date
 const newtimer = (flag) => {
-	let year_text_box = document.getElementById("year_input");
-	let month_text_box = document.getElementById("month_input");
-	let day_text_box = document.getElementById("day_input");
-	let hour_text_box = document.getElementById("hour_input");
-	let minute_text_box = document.getElementById("minute_input");
-	let second_text_box = document.getElementById("second_input");
+	let year_text_box = document.querySelector("#year_input");
+	let month_text_box = document.querySelector("#month_input");
+	let day_text_box = document.querySelector("#day_input");
+	let hour_text_box = document.querySelector("#hour_input");
+	let minute_text_box = document.querySelector("#minute_input");
+	let second_text_box = document.querySelector("#second_input");
+	let modal_two = document.querySelector(".dialog_two");
 	let dialog_two_main = document.querySelector(".d_two_main");
 	let dialog_two_next = document.querySelector(".d_two_next");
 	let btn_next = document.querySelector("#btn_next");
@@ -172,11 +213,11 @@ const newtimer = (flag) => {
 		modal_two.style.transformOrigin = "top";
 		modal_two.style.transform = "scaleY(1)";
 		setTimeout(function () {
-			document.getElementById("year_input").focus();
+			year_text_box.focus();
 		}, 400);
 	} else if (flag == 2) {
 		modal_two.style.transform = "scaleY(0)";
-		document.getElementById("year_input").blur();
+		year_text_box.blur();
 	} else if (flag == 3) {
 		if (document.querySelector(".d2_main_box:invalid") == null) {
 			dialog_two_main.style.transform = "translateX(-32.5rem)";
@@ -190,7 +231,7 @@ const newtimer = (flag) => {
 				dialog_two_next.style.transform = "translateX(0rem)";
 			}, 175);
 			setTimeout(function () {
-				document.getElementById("hour_input").focus();
+				hour_text_box.focus();
 			}, 500);
 		}
 	} else if (flag == 4) {
@@ -205,7 +246,7 @@ const newtimer = (flag) => {
 			dialog_two_main.style.transform = "translateX(0rem)";
 		}, 175);
 		setTimeout(function () {
-			document.getElementById("year_input").focus();
+			year_text_box.focus();
 		}, 500);
 	} else {
 		let blank_date = new Date();
@@ -223,7 +264,7 @@ const newtimer = (flag) => {
 			dialog_two_next.style.display = "none";
 			dialog_two_main.style.display = "block";
 			dialog_two_main.style.transform = "translateX(0rem)";
-			document.getElementById("year_input").blur();
+			year_text_box.blur();
 			user_month--;
 			if (isNaN(user_year)) user_year = blank_date.getFullYear();
 			if (isNaN(user_month) && blank_date.getMonth() != 11)
@@ -239,6 +280,12 @@ const newtimer = (flag) => {
 				"--accent-clr-main",
 				"#0599dd"
 			); // reverting the clr to blue
+			localStorage.setItem("new_year", user_year);
+			localStorage.setItem("new_month", user_month);
+			localStorage.setItem("new_day", user_day);
+			localStorage.setItem("new_hour", user_hour);
+			localStorage.setItem("new_minute", user_minute);
+			localStorage.setItem("new_second", user_second);
 			target_acquired(
 				user_year,
 				user_month,
@@ -252,8 +299,10 @@ const newtimer = (flag) => {
 	}
 };
 
-// * The Modal to Allow or Deny Alarm Music
+// * The Opening Modal to Allow or Deny Alarm Music
 const close_modal = (flag) => {
+	let vol_icon = document.querySelector(".volume");
+	let modal_one = document.querySelector(".dialog_one");
 	document.documentElement.style.setProperty("--modal_one-opacity", "0");
 	setTimeout(function () {
 		modal_one.style.display = "none";
@@ -264,19 +313,23 @@ const close_modal = (flag) => {
 	} else {
 		vol_icon.innerText = "volume_off";
 		vol_on_flag = 0;
+		apply_mute();
 	}
 };
 
 // * The Information Modal
 const info_modal = (flag) => {
+	let modal_three = document.querySelector(".dialog_three");
 	if (flag == 0) {
 		modal_three.style.transformOrigin = "top";
 		modal_three.style.transform = "scaleY(1)";
 	} else modal_three.style.transform = "scaleY(0)";
 };
 
-// * Mute button to mute the Alarm at user choice
+// * Mute button to mute the Alarm at user's choice
 const mute_icon = () => {
+	mute_icon_clicked = 1;
+	let vol_icon = document.querySelector(".volume");
 	if (vol_icon.innerText == "volume_up") {
 		vol_icon.innerText = "volume_off";
 		vol_on_flag = 0;
@@ -290,6 +343,7 @@ const mute_icon = () => {
 
 // * Global Muter, All muting methods go through here
 const apply_mute = () => {
+	let audio = document.querySelector(".alarm");
 	if (vol_on_flag == 0) {
 		audio.muted = true;
 		beep.muted = true;
@@ -301,41 +355,39 @@ const apply_mute = () => {
 
 // * Allows you to change the name of the countdown
 const change_name = (flag) => {
-	let namech = document.getElementsByClassName("name");
+	let modal_four = document.querySelector(".dialog_four");
+	let namech = document.querySelector(".name");
+	let name_text_box = document.querySelector("#cd_name_input");
 	if (flag == 0) {
 		modal_four.style.transform = "translateY(30px) scaleY(1)";
-		document.getElementById("cd_name_input").value = "";
+		name_text_box.value = "";
 		setTimeout(function () {
-			document.getElementById("cd_name_input").focus();
+			name_text_box.focus();
 		}, 400);
 	} else if (flag == 2) {
 		modal_four.style.transform = "translateY(-275px) scaleY(0)";
-		document.getElementById("cd_name_input").blur();
+		name_text_box.blur();
 	} else {
-		let user_name = document.getElementById("cd_name_input").value;
+		let user_name = name_text_box.value;
 		user_name = user_name.toUpperCase();
 		// if text box is not in an invalid state, do these
 		if (document.querySelector(".d4_box:invalid") == null) {
 			modal_four.style.transform = "translateY(-275px) scaleY(0)";
-			document.getElementById("cd_name_input").blur();
+			name_text_box.blur();
 			if (user_name != "" && user_name != null) {
-				namech[0].innerText = user_name;
+				namech.innerText = user_name;
 				localStorage.setItem("name", user_name);
 			}
 		}
 	}
 };
 
-// * get localstorage function
-const localstore = () => {
-	let namech = document.getElementsByClassName("name");
-	if (localStorage.getItem("name") != null)
-		namech[0].innerText = localStorage.getItem("name");
-};
-
 // * Key shortcuts function
 const key_binds = () => {
-	let namech = document.getElementsByClassName("name");
+	let mute_button = document.querySelector(".mute");
+	let new_button = document.querySelector(".new_cd");
+	let info_button = document.querySelector(".info");
+	let namech = document.querySelector(".name");
 	Mousetrap.bind("m", function () {
 		mute_button.style.webkitTextFillColor = "#adffff";
 		setTimeout(function () {
@@ -358,9 +410,9 @@ const key_binds = () => {
 		info_modal(0);
 	});
 	Mousetrap.bind("alt+c", function () {
-		namech[0].style.webkitTextFillColor = "#00ffbf";
+		namech.style.webkitTextFillColor = "#00ffbf";
 		setTimeout(function () {
-			namech[0].style.webkitTextFillColor = "revert";
+			namech.style.webkitTextFillColor = "revert";
 		}, 150);
 		change_name(0);
 	});

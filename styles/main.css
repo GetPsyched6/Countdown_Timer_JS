@@ -203,14 +203,14 @@ body {
 .add:hover,
 .add:focus-visible {
 	border: 2px solid;
-	border-color: #ffffff;
+	border-color: #adffff;
 	background-color: #ffffff6c;
 	color: #adffff;
 }
 
 .add:active {
 	color: #d4ffd4f1;
-	border-color: #ffffffaf;
+	border-color: #d4ffd4f1;
 	background-color: #d3d3d36c;
 }
 
