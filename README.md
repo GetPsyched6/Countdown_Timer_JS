@@ -35,5 +35,5 @@ MIT Licence, You are free to use for any purpose, legally withstanding.
 
 ---
 
-**Attribution GetPsyched6© | *Roshin Nishad Nov 2021* | Indian Institute of Information Technology Kottayam 2020**
+**Attribution GetPsyched6© | *Roshin Nishad Nov 2021* | Indian Institute of Information Technology Kottayam Batch 2020**
 
