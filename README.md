@@ -30,6 +30,6 @@
 - Allow users to edit the background.
 - More intuitive method to create a new countdown.
 
-## Licence
-### MIT Licence, You are free to use for any purpose, legally withstanding.
+### Licence:
+#### MIT Licence, You are free to use for any purpose, legally withstanding.
 
