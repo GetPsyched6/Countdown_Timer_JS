@@ -44,7 +44,7 @@ body {
 	font-family: "binder", "calibri";
 	font-style: oblique;
 	position: relative;
-	color: #fffffff0;
+	color: #ffffffec;
 	overflow: hidden;
 	max-width: 100vw;
 }
@@ -139,7 +139,7 @@ body {
 	position: fixed;
 	border: 2px solid;
 	border-color: #ffffffcb;
-	background-color: #ffffff88;
+	background-color: #ffffff80;
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
@@ -182,7 +182,7 @@ body {
 	border-width: 3px;
 	border-radius: 100vw;
 	border-color: #ffcee5cb;
-	background-color: #ffffff48;
+	background-color: #ffffff60;
 	font-family: "Arial", sans-serif;
 	font-weight: 400;
 	font-size: 2.5rem;
@@ -203,15 +203,15 @@ body {
 .add:hover,
 .add:focus-visible {
 	border: 2px solid;
-	border-color: #ffffff;
-	background-color: #ffffff73;
+	border-color: #adffff;
+	background-color: #ffffff6c;
 	color: #adffff;
 }
 
 .add:active {
 	color: #d4ffd4f1;
-	border-color: #ffffffaf;
-	background-color: #d3d3d37c;
+	border-color: #d4ffd4f1;
+	background-color: #d3d3d36c;
 }
 
 .stop:hover {
