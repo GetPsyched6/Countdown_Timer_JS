@@ -28,7 +28,7 @@
 
 #### Planned Features:
 
-- Allow users to the change timeout music.
+- Allow users to change the Timeout music.
 - Allow users to edit the background.
 - More intuitive method to create a new countdown.
 
