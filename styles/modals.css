@@ -80,7 +80,6 @@
 
 .dialog_four > div {
 	padding: 45px 5px 30px;
-	
 }
 
 .modal_text {
@@ -127,8 +126,8 @@ kbd {
 	border: 2px solid;
 	border-color: #757575ee;
 	background-color: #505050c9;
-	padding: 0px 6px 1px; 
-	border-radius:6px;
+	padding: 0px 6px 1px;
+	border-radius: 6px;
 }
 
 .kbd_sc {
