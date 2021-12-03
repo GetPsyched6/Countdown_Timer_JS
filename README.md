@@ -17,7 +17,7 @@
 - /regex/ client-side input sanitization to resist XSS attacks.
 - Change the name of the countdown to anything you want! Just click on it.
 - Make your own Countdown! Click on the plus button on the bottom right corner.
-- Timeout alarm and last 10 seconds warning beep along with a visual cue.
+- Has a Timeout Alarm and a final 10 seconds warning beep + visual cue.
 - Mute or Unmute whenever you want with the mute button, no annoying autoplay here.
 - Keyboard Shortcuts! Click on the `i` button on the site to know more.
 - All user added data stored in LocalStorage, so your preferences will be there the next time you visit.
