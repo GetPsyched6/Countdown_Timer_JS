@@ -36,7 +36,6 @@ html {
 
 body {
 	-webkit-tap-highlight-color: transparent;
-	background-color: #68225e;
 	background-color: #00555d;
 	background-image: url("../images/Tchompalov_mini.webp");
 	background-repeat: repeat;
@@ -51,7 +50,6 @@ body {
 
 .wrapper {
 	height: 100vh;
-	display: flow-root;
 	background-color: transparent;
 	transition: background-color 400ms ease;
 }
