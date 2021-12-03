@@ -4,7 +4,7 @@ let running; // the setInterval variable
 let alarm_flag; // whether the alarm should ring or not.
 let vol_on_flag = 0; // whether alarm is muted currently
 let mute_icon_clicked = 0; // to know if mute button was clicked
-let beep = document.querySelector(".beep"); // the alarm warning
+let beep = document.querySelector(".beep"); // the alarm warning beep
 let dd = document.querySelector(".days");
 let hh = document.querySelector(".hours");
 let mm = document.querySelector(".minutes");
@@ -131,11 +131,8 @@ const countdown = () => {
 	if (visit != 1 && visit % 5 != 0 && mute_icon_clicked == 0) {
 		sec_mute.style.borderWidth = "3px";
 		if (second % 2 == 0) {
-			sec_mute.style.borderColor =
-				"#00ffff";
-		} else
-			sec_mute.style.borderColor =
-				"revert";
+			sec_mute.style.borderColor = "#00ffff";
+		} else sec_mute.style.borderColor = "revert";
 	} else if (mute_icon_clicked == 1) {
 		sec_mute.style.borderColor = "revert";
 		sec_mute.style.borderWidth = "2px";
