@@ -2,7 +2,7 @@
 
 ## Custom Beautiful Countdowns!
 
-<h3><a href="https://getpsyched6-countdown.netlify.app/" target="_blank">Link to site - Aurora Sparkles</a></h3><br/>
+<h3><a href="https://getpsyched6-countdown.netlify.app/" target="_blank" rel="noopener noreferrer">Link to site - Aurora Sparkles</a></h3><br/>
 
 ![image](https://user-images.githubusercontent.com/3417276/144539301-64c3fd35-ab6b-46e3-a831-5e6732b453b4.png)<br/>
 
