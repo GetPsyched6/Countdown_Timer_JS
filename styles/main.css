@@ -232,7 +232,7 @@ body {
 	transition: transform 800ms ease-in-out;
 }
 
-@media screen and (max-width: 94em) {
+@media screen and (max-width: 90em) {
 	.title h1 {
 		font-size: 5rem;
 		white-space: nowrap;
