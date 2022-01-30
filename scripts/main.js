@@ -62,7 +62,7 @@ const localstore = () => {
 // * Setting the target date here. Defaulted by parameters t_*
 const target_acquired = (
 	t_year = 2022,
-	t_month = 5,
+	t_month = 3,
 	t_day = 18,
 	t_hour = 0,
 	t_min = 0,
